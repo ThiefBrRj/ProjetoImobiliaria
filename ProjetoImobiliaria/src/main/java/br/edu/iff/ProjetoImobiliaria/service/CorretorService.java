@@ -1,10 +1,12 @@
 package br.edu.iff.ProjetoImobiliaria.service;
 
-import br.edu.iff.ProjetoImobiliaria.Repository.CorretorRepository;
+import br.edu.iff.ProjetoImobiliaria.exception.NotFoundException;
+import br.edu.iff.ProjetoImobiliaria.repository.CorretorRepository;
 import br.edu.iff.ProjetoImobiliaria.model.Corretor;
 import br.edu.iff.ProjetoImobiliaria.model.Endereco;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class CorretorService {
     public Corretor findById(Long id) {
         Optional<Corretor> c = repo.findById(id);
         if (c.isEmpty()) {
-            throw new RuntimeException("Corretor não encontardo.");
+            throw new NotFoundException("Corretor não encontardo.");
         }
         return c.get();
     }
@@ -31,6 +33,13 @@ public class CorretorService {
         try {
             return repo.save(c);
         } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+                if (t instanceof ConstraintViolationException) {
+                    throw ((ConstraintViolationException) t);
+                }
+            }
             throw new RuntimeException("Erro ao salvar corretor.");
         }
     }
@@ -47,6 +56,13 @@ public class CorretorService {
             return repo.save(c);
 
         } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+                if (t instanceof ConstraintViolationException) {
+                    throw ((ConstraintViolationException) t);
+                }
+            }
             throw new RuntimeException("Erro ao atualizar corretor.");
         }
     }

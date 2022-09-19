@@ -1,11 +1,13 @@
 package br.edu.iff.ProjetoImobiliaria.service;
 
-import br.edu.iff.ProjetoImobiliaria.Repository.ImovelRepository;
+import br.edu.iff.ProjetoImobiliaria.exception.NotFoundException;
+import br.edu.iff.ProjetoImobiliaria.repository.ImovelRepository;
 import br.edu.iff.ProjetoImobiliaria.model.Cliente;
 import br.edu.iff.ProjetoImobiliaria.model.Endereco;
 import br.edu.iff.ProjetoImobiliaria.model.Imovel;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class ImovelService {
     public Imovel findById(Long id) {
         Optional<Imovel> i = repo.findById(id);
         if (i.isEmpty()) {
-            throw new RuntimeException("Imovel não encontrado.");
+            throw new NotFoundException("Imovel não encontrado.");
         }
         return i.get();
     }
@@ -38,6 +40,13 @@ public class ImovelService {
         try {
             return repo.save(i);
         } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+                if (t instanceof ConstraintViolationException) {
+                    throw ((ConstraintViolationException) t);
+                }
+            }
             throw new RuntimeException("Erro ao salvar imóvel.");
         }
     }
@@ -55,6 +64,13 @@ public class ImovelService {
             i.setInscricao(obj.getInscricao());
             return repo.save(i);
         } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+                if (t instanceof ConstraintViolationException) {
+                    throw ((ConstraintViolationException) t);
+                }
+            }
             throw new RuntimeException("Erro ao atualizar imóvel.");
         }
     }

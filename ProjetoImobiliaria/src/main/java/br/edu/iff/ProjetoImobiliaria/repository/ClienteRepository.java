@@ -1,4 +1,4 @@
-package br.edu.iff.ProjetoImobiliaria.Repository;
+package br.edu.iff.ProjetoImobiliaria.repository;
 
 import br.edu.iff.ProjetoImobiliaria.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;

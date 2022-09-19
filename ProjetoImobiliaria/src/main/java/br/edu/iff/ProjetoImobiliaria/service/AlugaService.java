@@ -1,6 +1,7 @@
 package br.edu.iff.ProjetoImobiliaria.service;
 
-import br.edu.iff.ProjetoImobiliaria.Repository.AlugaRepository;
+import br.edu.iff.ProjetoImobiliaria.exception.NotFoundException;
+import br.edu.iff.ProjetoImobiliaria.repository.AlugaRepository;
 import br.edu.iff.ProjetoImobiliaria.model.Aluga;
 import br.edu.iff.ProjetoImobiliaria.model.Cliente;
 import br.edu.iff.ProjetoImobiliaria.model.Corretor;
@@ -8,6 +9,7 @@ import br.edu.iff.ProjetoImobiliaria.model.Imovel;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,7 @@ public class AlugaService {
     public Aluga findById(Long id) {
         Optional<Aluga> a = repo.findById(id);
         if (a.isEmpty()) {
-            throw new RuntimeException("Contrato de aluguel não encontrado.");
+            throw new NotFoundException("Contrato de aluguel não encontrado.");
         }
         return a.get();
     }
@@ -42,6 +44,13 @@ public class AlugaService {
         try {
             return repo.save(a);
         } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+                if (t instanceof ConstraintViolationException) {
+                    throw ((ConstraintViolationException) t);
+                }
+            }
             throw new RuntimeException("Erro ao salvar Contrato de aluguel.");
         }
     }
@@ -61,6 +70,13 @@ public class AlugaService {
             a.setNcontrato(obj.getNcontrato());
             return repo.save(a);
         } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+                if (t instanceof ConstraintViolationException) {
+                    throw ((ConstraintViolationException) t);
+                }
+            }
             throw new RuntimeException("Erro ao atualizar contrato de aluguel.");
         }
     }

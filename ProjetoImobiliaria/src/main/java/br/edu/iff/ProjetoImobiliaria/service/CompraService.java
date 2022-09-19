@@ -1,6 +1,7 @@
 package br.edu.iff.ProjetoImobiliaria.service;
 
-import br.edu.iff.ProjetoImobiliaria.Repository.CompraRepository;
+import br.edu.iff.ProjetoImobiliaria.exception.NotFoundException;
+import br.edu.iff.ProjetoImobiliaria.repository.CompraRepository;
 import br.edu.iff.ProjetoImobiliaria.model.Cliente;
 import br.edu.iff.ProjetoImobiliaria.model.Compra;
 import br.edu.iff.ProjetoImobiliaria.model.Corretor;
@@ -8,6 +9,7 @@ import br.edu.iff.ProjetoImobiliaria.model.Imovel;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,7 @@ public class CompraService {
     public Compra findById(Long id) {
         Optional<Compra> c = repo.findById(id);
         if (c.isEmpty()) {
-            throw new RuntimeException("Contarto de compra não encontrado.");
+            throw new NotFoundException("Contarto de compra não encontrado.");
         }
         return c.get();
     }
@@ -40,6 +42,13 @@ public class CompraService {
         try {
             return repo.save(c);
         } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+                if (t instanceof ConstraintViolationException) {
+                    throw ((ConstraintViolationException) t);
+                }
+            }
             throw new RuntimeException("Erro ao salvar contarto de compra.");
         }
     }
@@ -57,6 +66,13 @@ public class CompraService {
             c.setNcontrato(obj.getNcontrato());
             return repo.save(c);
         } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+                if (t instanceof ConstraintViolationException) {
+                    throw ((ConstraintViolationException) t);
+                }
+            }
             throw new RuntimeException("Erro ao atualizar cliente.");
         }
     }

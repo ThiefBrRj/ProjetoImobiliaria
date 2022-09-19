@@ -1,10 +1,10 @@
 package br.edu.iff.ProjetoImobiliaria;
 
-import br.edu.iff.ProjetoImobiliaria.Repository.AlugaRepository;
-import br.edu.iff.ProjetoImobiliaria.Repository.ClienteRepository;
-import br.edu.iff.ProjetoImobiliaria.Repository.CompraRepository;
-import br.edu.iff.ProjetoImobiliaria.Repository.CorretorRepository;
-import br.edu.iff.ProjetoImobiliaria.Repository.ImovelRepository;
+import br.edu.iff.ProjetoImobiliaria.repository.AlugaRepository;
+import br.edu.iff.ProjetoImobiliaria.repository.ClienteRepository;
+import br.edu.iff.ProjetoImobiliaria.repository.CompraRepository;
+import br.edu.iff.ProjetoImobiliaria.repository.CorretorRepository;
+import br.edu.iff.ProjetoImobiliaria.repository.ImovelRepository;
 import br.edu.iff.ProjetoImobiliaria.model.Aluga;
 import br.edu.iff.ProjetoImobiliaria.model.Cliente;
 import br.edu.iff.ProjetoImobiliaria.model.Compra;

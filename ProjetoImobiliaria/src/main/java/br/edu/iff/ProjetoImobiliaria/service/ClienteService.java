@@ -1,10 +1,12 @@
 package br.edu.iff.ProjetoImobiliaria.service;
 
-import br.edu.iff.ProjetoImobiliaria.Repository.ClienteRepository;
+import br.edu.iff.ProjetoImobiliaria.exception.NotFoundException;
+import br.edu.iff.ProjetoImobiliaria.repository.ClienteRepository;
 import br.edu.iff.ProjetoImobiliaria.model.Cliente;
 import br.edu.iff.ProjetoImobiliaria.model.Endereco;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class ClienteService {
     public Cliente findById(Long id) {
         Optional<Cliente> c = repo.findById(id);
         if (c.isEmpty()) {
-            throw new RuntimeException("Cliente não encontrado");
+            throw new NotFoundException("Cliente não encontrado");
         }
         return c.get();
     }
@@ -31,6 +33,13 @@ public class ClienteService {
         try {
             return repo.save(c);
         } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+                if (t instanceof ConstraintViolationException) {
+                    throw ((ConstraintViolationException) t);
+                }
+            }
             throw new RuntimeException("Erro ao salvar cliente.");
         }
     }
@@ -46,6 +55,13 @@ public class ClienteService {
             c.setCpf(obj.getCpf());
             return repo.save(c);
         } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+                if (t instanceof ConstraintViolationException) {
+                    throw ((ConstraintViolationException) t);
+                }
+            }
             throw new RuntimeException("Erro ao atualizar cliente.");
         }
     }

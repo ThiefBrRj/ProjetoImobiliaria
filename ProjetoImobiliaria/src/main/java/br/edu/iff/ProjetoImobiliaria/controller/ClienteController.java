@@ -2,6 +2,7 @@ package br.edu.iff.ProjetoImobiliaria.controller;
 
 import br.edu.iff.ProjetoImobiliaria.model.Cliente;
 import br.edu.iff.ProjetoImobiliaria.service.ClienteService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,21 +33,21 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity save(@RequestBody Cliente cliente) {
+    public ResponseEntity save(@Valid @RequestBody Cliente cliente) {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.cs.save(cliente));
     }
 
     @PutMapping
-    public ResponseEntity update(@RequestBody Cliente cliente) {
+    public ResponseEntity update(@Valid @RequestBody Cliente cliente) {
         cliente.setId(null);
         this.cs.update(cliente);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-    
+
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id) {
         this.cs.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-    
+
 }
