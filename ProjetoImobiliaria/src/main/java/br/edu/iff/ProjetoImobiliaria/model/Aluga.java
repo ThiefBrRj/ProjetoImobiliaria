@@ -1,6 +1,6 @@
 package br.edu.iff.ProjetoImobiliaria.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
@@ -8,33 +8,34 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Entity
-public class Aluga extends Contrato{
+public class Aluga extends Contrato {
+
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     @NotNull
-    private Date dataInicio;
+    private LocalDate dataInicio;
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     @NotNull
-    private Date dataFim;
+    private LocalDate dataFim;
     @Column(nullable = false)
     @NotNull
     @Positive
     private float valorMensalidade;
 
-    public Date getDataInicio() {
+    public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Date dataInicio) {
+    public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public Date getDataFim() {
+    public LocalDate getDataFim() {
         return dataFim;
     }
 
-    public void setDataFim(Date dataFim) {
+    public void setDataFim(LocalDate dataFim) {
         this.dataFim = dataFim;
     }
 
@@ -45,6 +46,5 @@ public class Aluga extends Contrato{
     public void setValorMensalidade(float valorMensalidade) {
         this.valorMensalidade = valorMensalidade;
     }
-    
-    
+
 }

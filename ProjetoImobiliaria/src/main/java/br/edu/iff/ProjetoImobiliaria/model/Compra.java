@@ -6,7 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Entity
-public class Compra extends Contrato{
+public class Compra extends Contrato {
+
     @Column(nullable = false)
     @NotNull
     @Positive
@@ -19,5 +20,5 @@ public class Compra extends Contrato{
     public void setValorCompra(float valorCompra) {
         this.valorCompra = valorCompra;
     }
-    
+
 }

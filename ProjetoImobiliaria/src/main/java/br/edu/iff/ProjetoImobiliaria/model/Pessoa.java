@@ -21,12 +21,12 @@ import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Pessoa implements Serializable{
+public abstract class Pessoa implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -115,5 +115,4 @@ public abstract class Pessoa implements Serializable{
         return Objects.equals(this.cpf, other.cpf);
     }
 
-    
 }

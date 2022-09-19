@@ -12,8 +12,7 @@ import br.edu.iff.ProjetoImobiliaria.model.Corretor;
 import br.edu.iff.ProjetoImobiliaria.model.Endereco;
 import br.edu.iff.ProjetoImobiliaria.model.Imovel;
 import br.edu.iff.ProjetoImobiliaria.model.Telefone;
-
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,8 +82,7 @@ public class ProjetoImobiliariaApplication {
             f1.setCpf("532.960.510-58");
             f1.setGerenteId(1L);
 
-            Date hoje = new Date();
-            hoje.setTime(System.currentTimeMillis());
+            LocalDate hoje = LocalDate.now();
             f1.setDataAdmissao(hoje);
 
             f1.setEmail("josuke@gmail.com");
@@ -100,7 +98,7 @@ public class ProjetoImobiliariaApplication {
             i1.setFinalidade("Alugar");
             i1.setStatus(true);
             i1.setValorNegociacao(2500f);
-            i1.setnInscricao("202011200064");
+            i1.setInscricao("202011200064");
 
             imovelRepo.save(i1);
 
@@ -110,7 +108,7 @@ public class ProjetoImobiliariaApplication {
             i2.setFinalidade("Vender");
             i2.setStatus(true);
             i2.setValorNegociacao(250000f);
-            i2.setnInscricao("202011200065");
+            i2.setInscricao("202011200065");
 
             imovelRepo.save(i2);
 
