@@ -12,7 +12,6 @@ import br.edu.iff.ProjetoImobiliaria.model.Corretor;
 import br.edu.iff.ProjetoImobiliaria.model.Endereco;
 import br.edu.iff.ProjetoImobiliaria.model.Imovel;
 import br.edu.iff.ProjetoImobiliaria.model.Telefone;
-import br.edu.iff.ProjetoImobiliaria.security.MyApp;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -44,7 +43,6 @@ public class ProjetoImobiliariaApplication {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-            SpringApplication.run(MyApp.class, args);
 
             Cliente c1 = new Cliente();
             c1.setNome("Joline");
