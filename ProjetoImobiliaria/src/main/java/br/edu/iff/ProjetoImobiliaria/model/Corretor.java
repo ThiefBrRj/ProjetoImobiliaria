@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -19,8 +18,7 @@ public class Corretor extends Pessoa {
     @NotBlank
     @Email
     private String email;
-    @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(nullable = false, columnDefinition = "DATE")
     @NotNull
     private LocalDate dataAdmissao;
     @Column(nullable = false)

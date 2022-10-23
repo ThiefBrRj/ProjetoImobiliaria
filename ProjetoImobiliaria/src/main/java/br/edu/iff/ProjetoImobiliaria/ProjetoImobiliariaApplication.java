@@ -24,7 +24,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class ProjetoImobiliariaApplication {
-
+    
     @Autowired
     ClienteRepository clienteRepo;
     @Autowired
@@ -35,11 +35,11 @@ public class ProjetoImobiliariaApplication {
     AlugaRepository alugaRepo;
     @Autowired
     CompraRepository compraRepo;
-
+    
     public static void main(String[] args) {
         SpringApplication.run(ProjetoImobiliariaApplication.class, args);
     }
-
+    
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
@@ -47,24 +47,24 @@ public class ProjetoImobiliariaApplication {
             c1.setNome("Joline");
             c1.setCpf("475.554.740-77");
             c1.setContaBancaria("122334");
-
+            
             Telefone t1 = new Telefone();
             t1.setDdd("22");
             t1.setNumero("999580010");
             Telefone t2 = new Telefone();
             t2.setDdd("21");
             t2.setNumero("998531010");
-
+            
             Endereco enderecoCliente = new Endereco();
             enderecoCliente.setRua("R. Isabel");
             enderecoCliente.setCidade("Campos");
             enderecoCliente.setNumero("41");
             enderecoCliente.setUf("RJ");
             enderecoCliente.setTipo("Casa");
-
+            
             c1.setEnderecos(enderecoCliente);
             c1.setTelefones(List.of(t1, t2));
-
+            
             clienteRepo.save(c1);
 
             //Corretor
@@ -74,21 +74,21 @@ public class ProjetoImobiliariaApplication {
             end.setNumero("41");
             end.setUf("RJ");
             end.setTipo("Casa");
-
+            
             c1.setEnderecos(end);
-
+            
             Corretor f1 = new Corretor();
             f1.setNome("Josuke");
             f1.setCpf("532.960.510-58");
             f1.setGerenteId(1L);
-
+            
             LocalDate hoje = LocalDate.now();
             f1.setDataAdmissao(hoje);
-
+            
             f1.setEmail("josuke@gmail.com");
             f1.setEnderecos(end);
             f1.setTelefones(List.of());
-
+            
             corretorRepo.save(f1);
 
             //Imovel
@@ -99,9 +99,9 @@ public class ProjetoImobiliariaApplication {
             i1.setStatus(true);
             i1.setValorNegociacao(2500f);
             i1.setInscricao("202011200064");
-
+            
             imovelRepo.save(i1);
-
+            
             Imovel i2 = new Imovel();
             i2.setCliente(c1);
             i2.setEndereco(end);
@@ -109,7 +109,7 @@ public class ProjetoImobiliariaApplication {
             i2.setStatus(true);
             i2.setValorNegociacao(250000f);
             i2.setInscricao("202011200065");
-
+            
             imovelRepo.save(i2);
 
             //Aluga
@@ -122,7 +122,7 @@ public class ProjetoImobiliariaApplication {
             al1.setImovel(i1);
             al1.setNcontrato(001);
             al1.setValorMensalidade(i1.getValorNegociacao());
-
+            
             alugaRepo.save(al1);
 
             //Compra
@@ -133,7 +133,7 @@ public class ProjetoImobiliariaApplication {
             co1.setImovel(i2);
             co1.setNcontrato(2);
             co1.setValorCompra(i2.getValorNegociacao());
-
+            
             compraRepo.save(co1);
         };
     }

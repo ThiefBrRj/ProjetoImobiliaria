@@ -28,8 +28,7 @@ public abstract class Contrato implements Serializable {
     @Column(nullable = false, unique = true)
     @NotNull
     private int contrato;
-    @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(nullable = false, columnDefinition = "DATE")
     @NotNull
     private LocalDate dataContrato;
 

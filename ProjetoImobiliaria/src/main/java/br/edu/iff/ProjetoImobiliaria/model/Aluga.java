@@ -10,12 +10,10 @@ import javax.validation.constraints.Positive;
 @Entity
 public class Aluga extends Contrato {
 
-    @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(nullable = false, columnDefinition = "DATE")
     @NotNull
     private LocalDate dataInicio;
-    @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(nullable = false, columnDefinition = "DATE")
     @NotNull
     private LocalDate dataFim;
     @Column(nullable = false)
