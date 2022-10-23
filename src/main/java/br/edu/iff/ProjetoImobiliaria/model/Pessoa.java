@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
@@ -20,12 +21,12 @@ import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Pessoa implements Serializable{
+public abstract class Pessoa implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,14 +39,13 @@ public abstract class Pessoa implements Serializable{
     @Length(max = 14)
     @CPF
     private String cpf;
-    
-    @ElementCollection
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL)
     @NotNull
     @Valid
     private List<Telefone> telefones = new ArrayList<>();
-    @Embedded
-    @OneToOne
+
+    @OneToOne(cascade = CascadeType.ALL)
     @NotNull
     @Valid
     private Endereco endereco;
@@ -115,5 +115,4 @@ public abstract class Pessoa implements Serializable{
         return Objects.equals(this.cpf, other.cpf);
     }
 
-    
 }

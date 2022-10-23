@@ -9,9 +9,10 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Telefone implements Serializable{
+public class Telefone implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -68,8 +69,4 @@ public class Telefone implements Serializable{
         return this.id == other.id;
     }
 
-    
-    
-    
-    
 }

@@ -2,7 +2,8 @@ package br.edu.iff.ProjetoImobiliaria.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,20 +18,20 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Contrato implements Serializable{
+public abstract class Contrato implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @Column(nullable = false,unique = true)
+    private Long id;
+    @Column(nullable = false, unique = true)
     @NotNull
-    private int nContrato;
-    @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    private int contrato;
+    @Column(nullable = false, columnDefinition = "DATE")
     @NotNull
-    private Date dataContrato;
-    
+    private LocalDate dataContrato;
+
     @JsonManagedReference
     @ManyToOne
     @Valid
@@ -47,27 +48,27 @@ public abstract class Contrato implements Serializable{
     @NotNull
     private Imovel imovel;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     public int getNcontrato() {
-        return nContrato;
+        return contrato;
     }
 
     public void setNcontrato(int ncontrato) {
-        this.nContrato = ncontrato;
+        this.contrato = ncontrato;
     }
 
-    public Date getDataContrato() {
+    public LocalDate getDataContrato() {
         return dataContrato;
     }
 
-    public void setDataContrato(Date dataContrato) {
+    public void setDataContrato(LocalDate dataContrato) {
         this.dataContrato = dataContrato;
     }
 
@@ -97,8 +98,8 @@ public abstract class Contrato implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 61 * hash + this.id;
+        int hash = 3;
+        hash = 31 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -114,7 +115,7 @@ public abstract class Contrato implements Serializable{
             return false;
         }
         final Contrato other = (Contrato) obj;
-        return this.id == other.id;
+        return Objects.equals(this.id, other.id);
     }
-    
+
 }

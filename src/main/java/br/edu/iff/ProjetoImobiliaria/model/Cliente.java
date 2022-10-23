@@ -10,11 +10,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa {
+
     @Column(nullable = false, unique = true)
     @NotBlank
     private String contaBancaria;
-    
+
     @JsonBackReference
     @OneToMany(mappedBy = "cliente")
     @Valid
@@ -46,6 +47,5 @@ public class Cliente extends Pessoa{
     public void setContratos(List<Contrato> contratos) {
         this.contratos = contratos;
     }
-    
-    
+
 }

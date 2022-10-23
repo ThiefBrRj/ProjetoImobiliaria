@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -20,15 +21,16 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @Entity
-public class Imovel implements Serializable{
+public class Imovel implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column(nullable = false, unique = true)
     @NotBlank
-    private String nInscricao;
+    private String inscricao;
     @Column(nullable = false)
     @NotNull
     @Positive
@@ -39,7 +41,7 @@ public class Imovel implements Serializable{
     @Column(nullable = false)
     @NotNull
     private boolean status;
-    
+
     @JsonManagedReference
     @ManyToOne
     @Valid
@@ -54,20 +56,20 @@ public class Imovel implements Serializable{
     @OneToMany(mappedBy = "imovel")
     private List<Contrato> contratos = new ArrayList<>();
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getnInscricao() {
-        return nInscricao;
+    public String getInscricao() {
+        return inscricao;
     }
 
-    public void setnInscricao(String nInscricao) {
-        this.nInscricao = nInscricao;
+    public void setInscricao(String inscricao) {
+        this.inscricao = inscricao;
     }
 
     public float getValorNegociacao() {
@@ -121,7 +123,7 @@ public class Imovel implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.id;
+        hash = 89 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -137,7 +139,7 @@ public class Imovel implements Serializable{
             return false;
         }
         final Imovel other = (Imovel) obj;
-        return this.id == other.id;
+        return Objects.equals(this.id, other.id);
     }
-    
+
 }

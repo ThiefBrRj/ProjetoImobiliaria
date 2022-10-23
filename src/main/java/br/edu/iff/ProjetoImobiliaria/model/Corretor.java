@@ -1,30 +1,29 @@
 package br.edu.iff.ProjetoImobiliaria.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Corretor extends Pessoa{
+public class Corretor extends Pessoa {
+
     @Column(nullable = false)
     @NotBlank
     @Email
     private String email;
-    @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(nullable = false, columnDefinition = "DATE")
     @NotNull
-    private Date dataAdmissao;
+    private LocalDate dataAdmissao;
     @Column(nullable = false)
     private Long gerenteId;
-    
+
     @JsonBackReference
     @OneToMany(mappedBy = "corretor")
     private List<Contrato> contratos = new ArrayList<>();
@@ -37,11 +36,11 @@ public class Corretor extends Pessoa{
         this.email = email;
     }
 
-    public Date getDataAdmissao() {
+    public LocalDate getDataAdmissao() {
         return dataAdmissao;
     }
 
-    public void setDataAdmissao(Date dataAdmissao) {
+    public void setDataAdmissao(LocalDate dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
 
@@ -60,5 +59,5 @@ public class Corretor extends Pessoa{
     public void setContratos(List<Contrato> contratos) {
         this.contratos = contratos;
     }
-    
+
 }
