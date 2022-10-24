@@ -3,7 +3,6 @@ package br.edu.iff.ProjetoImobiliaria.model;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
