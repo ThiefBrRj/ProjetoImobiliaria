@@ -3,7 +3,6 @@ package br.edu.iff.ProjetoImobiliaria.service;
 import br.edu.iff.ProjetoImobiliaria.exception.NotFoundException;
 import br.edu.iff.ProjetoImobiliaria.repository.CorretorRepository;
 import br.edu.iff.ProjetoImobiliaria.model.Corretor;
-import br.edu.iff.ProjetoImobiliaria.model.Endereco;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.ConstraintViolationException;

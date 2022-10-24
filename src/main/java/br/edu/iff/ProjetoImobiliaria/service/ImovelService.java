@@ -2,6 +2,8 @@ package br.edu.iff.ProjetoImobiliaria.service;
 
 import br.edu.iff.ProjetoImobiliaria.exception.NotFoundException;
 import br.edu.iff.ProjetoImobiliaria.repository.ImovelRepository;
+import br.edu.iff.ProjetoImobiliaria.model.Cliente;
+import br.edu.iff.ProjetoImobiliaria.model.Endereco;
 import br.edu.iff.ProjetoImobiliaria.model.Imovel;
 import java.util.List;
 import java.util.Optional;
@@ -29,8 +31,8 @@ public class ImovelService {
 
     public Imovel save(Imovel i) {
         verificarDados(
-//                i.getCliente(),
-//                i.getEndereco(),
+                i.getCliente(),
+                i.getEndereco(),
                 i.getFinalidade(),
                 i.getValorNegociacao(),
                 i.getInscricao()
@@ -52,8 +54,8 @@ public class ImovelService {
     public Imovel update(Imovel i) {
         Imovel obj = findById(i.getId());
         verificarDados(
-//                i.getCliente(),
-//                i.getEndereco(),
+                i.getCliente(),
+                i.getEndereco(),
                 i.getFinalidade(),
                 i.getValorNegociacao(),
                 i.getInscricao()
@@ -83,8 +85,8 @@ public class ImovelService {
     }
 
     private void verificarDados(
-//            Cliente cliente,
-//            Endereco endereco,
+            Cliente cliente,
+            Endereco endereco,
             String finalidade,
             float valorNegociacao,
             String inscricao
@@ -92,9 +94,9 @@ public class ImovelService {
         if (inscricao.isBlank() || finalidade.isBlank()) {
             throw new IllegalArgumentException("Número de inscrição e/ou finalidade inválido(s).");
         }
-//        if (endereco == null || cliente == null) {
-//            throw new IllegalArgumentException("Cliente e endereço não podem ser nulos.");
-//        }
+        if (endereco == null || cliente == null) {
+            throw new IllegalArgumentException("Cliente e endereço não podem ser nulos.");
+        }
         if (valorNegociacao <= 0) {
             throw new IllegalArgumentException("Valor de Negociação tem que ser positivo.");
         }
