@@ -1,21 +1,12 @@
 package br.edu.iff.ProjetoImobiliaria.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -42,19 +33,19 @@ public class Imovel implements Serializable {
     @NotNull
     private boolean status;
 
-    @JsonManagedReference
-    @ManyToOne
-    @Valid
-    @NotNull
-    private Cliente cliente;
-    @Embedded
-    @OneToOne
-    @Valid
-    @NotNull
-    private Endereco endereco;
-    @JsonBackReference
-    @OneToMany(mappedBy = "imovel")
-    private List<Contrato> contratos = new ArrayList<>();
+//    @JsonManagedReference
+//    @ManyToOne
+//    @Valid
+//    @NotNull
+//    private Cliente cliente;
+//    @Embedded
+//    @OneToOne
+//    @Valid
+//    @NotNull
+//    private Endereco endereco;
+//    @JsonBackReference
+//    @OneToMany(mappedBy = "imovel")
+//    private List<Contrato> contratos = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -96,29 +87,29 @@ public class Imovel implements Serializable {
         this.status = status;
     }
 
-    public List<Contrato> getContratos() {
-        return contratos;
-    }
-
-    public void setContratos(List<Contrato> contratos) {
-        this.contratos = contratos;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+//    public List<Contrato> getContratos() {
+//        return contratos;
+//    }
+//
+//    public void setContratos(List<Contrato> contratos) {
+//        this.contratos = contratos;
+//    }
+//
+//    public Endereco getEndereco() {
+//        return endereco;
+//    }
+//
+//    public void setEndereco(Endereco endereco) {
+//        this.endereco = endereco;
+//    }
+//
+//    public Cliente getCliente() {
+//        return cliente;
+//    }
+//
+//    public void setCliente(Cliente cliente) {
+//        this.cliente = cliente;
+//    }
 
     @Override
     public int hashCode() {

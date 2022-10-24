@@ -3,9 +3,6 @@ package br.edu.iff.ProjetoImobiliaria.service;
 import br.edu.iff.ProjetoImobiliaria.exception.NotFoundException;
 import br.edu.iff.ProjetoImobiliaria.repository.AlugaRepository;
 import br.edu.iff.ProjetoImobiliaria.model.Aluga;
-import br.edu.iff.ProjetoImobiliaria.model.Cliente;
-import br.edu.iff.ProjetoImobiliaria.model.Corretor;
-import br.edu.iff.ProjetoImobiliaria.model.Imovel;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -33,9 +30,9 @@ public class AlugaService {
 
     public Aluga save(Aluga a) {
         verificarDados(
-                a.getCliente(),
-                a.getCorretor(),
-                a.getImovel(),
+//                a.getCliente(),
+//                a.getCorretor(),
+//                a.getImovel(),
                 a.getDataContrato(),
                 a.getDataInicio(),
                 a.getDataFim(),
@@ -58,9 +55,9 @@ public class AlugaService {
     public Aluga update(Aluga a) {
         Aluga obj = findById(a.getId());
         verificarDados(
-                a.getCliente(),
-                a.getCorretor(),
-                a.getImovel(),
+//                a.getCliente(),
+//                a.getCorretor(),
+//                a.getImovel(),
                 a.getDataContrato(),
                 a.getDataInicio(),
                 a.getDataFim(),
@@ -91,17 +88,17 @@ public class AlugaService {
     }
 
     private void verificarDados(
-            Cliente cliente,
-            Corretor corretor,
-            Imovel imovel,
+//            Cliente cliente,
+//            Corretor corretor,
+//            Imovel imovel,
             LocalDate dataContrato,
             LocalDate dataInicio,
             LocalDate dataFim,
             float valorMensalidade
     ) {
-        if (corretor == null || cliente == null || imovel == null) {
-            throw new IllegalArgumentException("Cliente, corretor e imóvel não podem ser nulos.");
-        }
+//        if (corretor == null || cliente == null || imovel == null) {
+//            throw new IllegalArgumentException("Cliente, corretor e imóvel não podem ser nulos.");
+//        }
         if (valorMensalidade <= 0) {
             throw new IllegalArgumentException("Valor de mensalidade tem que ser positivo.");
         }
