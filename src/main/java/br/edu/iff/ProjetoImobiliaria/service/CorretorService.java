@@ -29,7 +29,7 @@ public class CorretorService {
     }
 
     public Corretor save(Corretor c) {
-        verificarDados(c.getCpf(), c.getNome(), c.getEndereco());
+        verificarDados(c.getCpf(), c.getNome());
         try {
             return repo.save(c);
         } catch (Exception e) {
@@ -48,8 +48,7 @@ public class CorretorService {
         Corretor obj = findById(c.getId());
         verificarDados(
                 c.getCpf(),
-                c.getNome(),
-                c.getEndereco()
+                c.getNome()
         );
         try {
             c.setCpf(obj.getCpf());
@@ -76,15 +75,12 @@ public class CorretorService {
         }
     }
 
-    private void verificarDados(String cpf, String nome, Endereco endereco) {
+    private void verificarDados(String cpf, String nome) {
         if (cpf.length() != 14 || cpf.isBlank()) {
             throw new IllegalArgumentException("CPF inválido.");
         }
         if (nome.isBlank()) {
             throw new IllegalArgumentException("Nome inválido.");
-        }
-        if (endereco == null) {
-            throw new IllegalArgumentException("Endereço não pode ser nulo.");
         }
     }
 

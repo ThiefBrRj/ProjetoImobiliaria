@@ -3,7 +3,6 @@ package br.edu.iff.ProjetoImobiliaria.service;
 import br.edu.iff.ProjetoImobiliaria.exception.NotFoundException;
 import br.edu.iff.ProjetoImobiliaria.repository.ClienteRepository;
 import br.edu.iff.ProjetoImobiliaria.model.Cliente;
-import br.edu.iff.ProjetoImobiliaria.model.Endereco;
 import java.util.List;
 import java.util.Optional;
 import javax.validation.ConstraintViolationException;
@@ -29,7 +28,7 @@ public class ClienteService {
     }
 
     public Cliente save(Cliente c) {
-        verificarDados(c.getCpf(), c.getNome(), c.getEndereco());
+        verificarDados(c.getCpf(), c.getNome());
         try {
             return repo.save(c);
         } catch (Exception e) {
@@ -48,8 +47,7 @@ public class ClienteService {
         Cliente obj = findById(c.getId());
         verificarDados(
                 c.getCpf(),
-                c.getNome(),
-                c.getEndereco()
+                c.getNome()
         );
         try {
             c.setCpf(obj.getCpf());
@@ -75,15 +73,12 @@ public class ClienteService {
         }
     }
 
-    private void verificarDados(String cpf, String nome, Endereco endereco) {
+    private void verificarDados(String cpf, String nome) {
         if (cpf.length() != 14 || cpf.isBlank()) {
             throw new IllegalArgumentException("CPF inválido.");
         }
         if (nome.isBlank()) {
             throw new IllegalArgumentException("Nome inválido.");
-        }
-        if (endereco == null) {
-            throw new IllegalArgumentException("Endereço não pode ser nulo.");
         }
     }
 }

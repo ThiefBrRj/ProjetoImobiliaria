@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
@@ -39,9 +38,7 @@ public abstract class Pessoa implements Serializable {
     private String telefone;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @NotNull
-    @Valid
-    private Endereco endereco;
+    private Endereco endereco = new Endereco();
 
     public Long getId() {
         return id;
