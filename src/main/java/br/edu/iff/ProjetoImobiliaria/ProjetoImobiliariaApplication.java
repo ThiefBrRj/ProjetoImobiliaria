@@ -64,7 +64,7 @@ public class ProjetoImobiliariaApplication {
             enderecoCliente.setTipo("Casa");
 
             c1.setEnderecos(enderecoCliente);
-            c1.setTelefones(List.of(t1, t2));
+            c1.setTelefone(t1);
 
             clienteRepo.save(c1);
 
@@ -88,7 +88,7 @@ public class ProjetoImobiliariaApplication {
 
             f1.setEmail("josuke@gmail.com");
             f1.setEnderecos(end);
-            f1.setTelefones(List.of());
+            f1.setTelefone(t2);
 
             corretorRepo.save(f1);
 

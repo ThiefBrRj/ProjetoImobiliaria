@@ -1,8 +1,6 @@
 package br.edu.iff.ProjetoImobiliaria.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,7 +38,7 @@ public abstract class Pessoa implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @NotNull
     @Valid
-    private List<Telefone> telefones = new ArrayList<>();
+    private Telefone telefone;
 
     @OneToOne(cascade = CascadeType.ALL)
     @NotNull
@@ -71,12 +69,12 @@ public abstract class Pessoa implements Serializable {
         this.cpf = cpf;
     }
 
-    public List<Telefone> getTelefones() {
-        return telefones;
+    public Telefone getTelefone() {
+        return telefone;
     }
 
-    public void setTelefones(List<Telefone> telefones) {
-        this.telefones = telefones;
+    public void setTelefone(Telefone telefone) {
+        this.telefone = telefone;
     }
 
     public Endereco getEndereco() {
