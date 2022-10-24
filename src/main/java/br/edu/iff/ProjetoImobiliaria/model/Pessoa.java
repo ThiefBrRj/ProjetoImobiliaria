@@ -35,10 +35,8 @@ public abstract class Pessoa implements Serializable {
     @CPF
     private String cpf;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @NotNull
-    @Valid
-    private Telefone telefone;
+    @NotBlank
+    private String telefone;
 
     @OneToOne(cascade = CascadeType.ALL)
     @NotNull
@@ -69,11 +67,11 @@ public abstract class Pessoa implements Serializable {
         this.cpf = cpf;
     }
 
-    public Telefone getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(Telefone telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

@@ -11,9 +11,7 @@ import br.edu.iff.ProjetoImobiliaria.model.Compra;
 import br.edu.iff.ProjetoImobiliaria.model.Corretor;
 import br.edu.iff.ProjetoImobiliaria.model.Endereco;
 import br.edu.iff.ProjetoImobiliaria.model.Imovel;
-import br.edu.iff.ProjetoImobiliaria.model.Telefone;
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -49,12 +47,8 @@ public class ProjetoImobiliariaApplication {
             c1.setCpf("475.554.740-77");
             c1.setContaBancaria("122334");
 
-            Telefone t1 = new Telefone();
-            t1.setDdd("22");
-            t1.setNumero("999580010");
-            Telefone t2 = new Telefone();
-            t2.setDdd("21");
-            t2.setNumero("998531010");
+            String t1 = "(22)999580010";
+            String t2 = "(21)998531010";
 
             Endereco enderecoCliente = new Endereco();
             enderecoCliente.setRua("R. Isabel");
