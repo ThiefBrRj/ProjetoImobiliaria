@@ -1,6 +1,5 @@
 package br.edu.iff.ProjetoImobiliaria.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -11,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -31,21 +28,21 @@ public abstract class Contrato implements Serializable {
     @NotNull
     private LocalDate dataContrato;
 
-    @JsonManagedReference
-    @ManyToOne
-    @Valid
-    @NotNull
-    private Cliente cliente;
-    @JsonManagedReference
-    @ManyToOne
-    @Valid
-    @NotNull
-    private Corretor corretor;
-    @JsonManagedReference
-    @ManyToOne
-    @Valid
-    @NotNull
-    private Imovel imovel;
+//    @JsonManagedReference
+//    @ManyToOne
+//    @Valid
+//    @NotNull
+//    private Cliente cliente;
+//    @JsonManagedReference
+//    @ManyToOne
+//    @Valid
+//    @NotNull
+//    private Corretor corretor;
+//    @JsonManagedReference
+//    @ManyToOne
+//    @Valid
+//    @NotNull
+//    private Imovel imovel;
 
     public Long getId() {
         return id;
@@ -71,29 +68,29 @@ public abstract class Contrato implements Serializable {
         this.dataContrato = dataContrato;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Corretor getCorretor() {
-        return corretor;
-    }
-
-    public void setCorretor(Corretor corretor) {
-        this.corretor = corretor;
-    }
-
-    public Imovel getImovel() {
-        return imovel;
-    }
-
-    public void setImovel(Imovel imovel) {
-        this.imovel = imovel;
-    }
+//    public Cliente getCliente() {
+//        return cliente;
+//    }
+//
+//    public void setCliente(Cliente cliente) {
+//        this.cliente = cliente;
+//    }
+//
+//    public Corretor getCorretor() {
+//        return corretor;
+//    }
+//
+//    public void setCorretor(Corretor corretor) {
+//        this.corretor = corretor;
+//    }
+//
+//    public Imovel getImovel() {
+//        return imovel;
+//    }
+//
+//    public void setImovel(Imovel imovel) {
+//        this.imovel = imovel;
+//    }
 
     @Override
     public int hashCode() {
