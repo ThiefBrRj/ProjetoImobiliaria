@@ -2,6 +2,7 @@ package br.edu.iff.ProjetoImobiliaria.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
@@ -34,8 +36,8 @@ public abstract class Pessoa implements Serializable {
     @NotBlank
     private String telefone;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    private Endereco endereco = new Endereco();
+    @OneToOne(cascade = CascadeType.ALL)
+    private Endereco endereco = new Endereco();
 
     public Long getId() {
         return id;
@@ -69,13 +71,13 @@ public abstract class Pessoa implements Serializable {
         this.telefone = telefone;
     }
 
-//    public Endereco getEndereco() {
-//        return endereco;
-//    }
-//
-//    public void setEnderecos(Endereco endereco) {
-//        this.endereco = endereco;
-//    }
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEnderecos(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
     @Override
     public int hashCode() {

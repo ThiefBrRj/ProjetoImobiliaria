@@ -2,7 +2,10 @@ package br.edu.iff.ProjetoImobiliaria.service;
 
 import br.edu.iff.ProjetoImobiliaria.exception.NotFoundException;
 import br.edu.iff.ProjetoImobiliaria.repository.CompraRepository;
+import br.edu.iff.ProjetoImobiliaria.model.Cliente;
 import br.edu.iff.ProjetoImobiliaria.model.Compra;
+import br.edu.iff.ProjetoImobiliaria.model.Corretor;
+import br.edu.iff.ProjetoImobiliaria.model.Imovel;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -30,9 +33,9 @@ public class CompraService {
 
     public Compra save(Compra c) {
         verificarDados(
-//                c.getCliente(),
-//                c.getCorretor(),
-//                c.getImovel(),
+                c.getCliente(),
+                c.getCorretor(),
+                c.getImovel(),
                 c.getDataContrato(),
                 c.getValorCompra()
         );
@@ -53,9 +56,9 @@ public class CompraService {
     public Compra update(Compra c) {
         Compra obj = findById(c.getId());
         verificarDados(
-//                c.getCliente(),
-//                c.getCorretor(),
-//                c.getImovel(),
+                c.getCliente(),
+                c.getCorretor(),
+                c.getImovel(),
                 c.getDataContrato(),
                 c.getValorCompra()
         );
@@ -84,15 +87,15 @@ public class CompraService {
     }
 
     private void verificarDados(
-//            Cliente cliente,
-//            Corretor corretor,
-//            Imovel imovel,
+            Cliente cliente,
+            Corretor corretor,
+            Imovel imovel,
             LocalDate dataContrato,
             float valorCompra
     ) {
-//        if (corretor == null || cliente == null || imovel == null) {
-//            throw new IllegalArgumentException("Cliente, corretor e imóvel não podem ser nulos.");
-//        }
+        if (corretor == null || cliente == null || imovel == null) {
+            throw new IllegalArgumentException("Cliente, corretor e imóvel não podem ser nulos.");
+        }
         if (valorCompra <= 0) {
             throw new IllegalArgumentException("Valor de compra tem que ser positivo.");
         }
