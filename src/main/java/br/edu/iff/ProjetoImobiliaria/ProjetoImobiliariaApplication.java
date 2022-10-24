@@ -57,7 +57,7 @@ public class ProjetoImobiliariaApplication {
             enderecoCliente.setUf("RJ");
             enderecoCliente.setTipo("Casa");
 
-//            c1.setEnderecos(enderecoCliente);
+            c1.setEnderecos(enderecoCliente);
             c1.setTelefone(t1);
 
             clienteRepo.save(c1);
@@ -70,7 +70,7 @@ public class ProjetoImobiliariaApplication {
             end.setUf("RJ");
             end.setTipo("Casa");
 
-//            c1.setEnderecos(end);
+            c1.setEnderecos(end);
 
             Corretor f1 = new Corretor();
             f1.setNome("Josuke");
@@ -81,15 +81,15 @@ public class ProjetoImobiliariaApplication {
             f1.setDataAdmissao(hoje);
 
             f1.setEmail("josuke@gmail.com");
-//            f1.setEnderecos(end);
+            f1.setEnderecos(end);
             f1.setTelefone(t2);
 
             corretorRepo.save(f1);
 
             //Imovel
             Imovel i1 = new Imovel();
-//            i1.setCliente(c1);
-//            i1.setEndereco(end);
+            i1.setCliente(c1);
+            i1.setEndereco(end);
             i1.setFinalidade("Alugar");
             i1.setStatus(true);
             i1.setValorNegociacao(2500f);
@@ -98,8 +98,8 @@ public class ProjetoImobiliariaApplication {
             imovelRepo.save(i1);
 
             Imovel i2 = new Imovel();
-//            i2.setCliente(c1);
-//            i2.setEndereco(end);
+            i2.setCliente(c1);
+            i2.setEndereco(end);
             i2.setFinalidade("Vender");
             i2.setStatus(true);
             i2.setValorNegociacao(250000f);
@@ -109,12 +109,12 @@ public class ProjetoImobiliariaApplication {
 
             //Aluga
             Aluga al1 = new Aluga();
-//            al1.setCliente(c1);
-//            al1.setCorretor(f1);
+            al1.setCliente(c1);
+            al1.setCorretor(f1);
             al1.setDataContrato(hoje);
             al1.setDataInicio(hoje);
             al1.setDataFim(hoje);
-//            al1.setImovel(i1);
+            al1.setImovel(i1);
             al1.setNcontrato(001);
             al1.setValorMensalidade(i1.getValorNegociacao());
 
@@ -122,10 +122,10 @@ public class ProjetoImobiliariaApplication {
 
             //Compra
             Compra co1 = new Compra();
-//            co1.setCliente(c1);
-//            co1.setCorretor(f1);
+            co1.setCliente(c1);
+            co1.setCorretor(f1);
             co1.setDataContrato(hoje);
-//            co1.setImovel(i2);
+            co1.setImovel(i2);
             co1.setNcontrato(2);
             co1.setValorCompra(i2.getValorNegociacao());
 
